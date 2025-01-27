@@ -13,17 +13,22 @@ namespace EscapeRoom
         {
             "Stary_klucz",
             "Notes",
+            "Zapalki",
+            "Stara_moneta",
 
         };
-        public void takeItem(string item, List<string> furniture)
+
+        public List<string> Nowa_lodowka = new List<string>()
         {
-            if (Stara_komoda.Contains(item))
-            {
-                
-            }
+            "Klucz"
+        };
 
-        }
+        public List<string> Donica = new List<string>()
+        {
+            "Ziemia",
+            "Nowy_klucz",
 
+        };
 
     }
 }
