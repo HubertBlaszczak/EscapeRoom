@@ -74,45 +74,58 @@ namespace EscapeRoom
                         }
                     case "2":
                     case "Podejdz Nowa_lodowka":
-                        Console.WriteLine("Podaj czterocyfrowy kod: ");
-                        string password = Console.ReadLine();
-                        if (password == Player.CheckPassword())
+                        if (Player.CheckItemIsInInventory("nowy_klucz"))
                         {
-
-
-                            Console.WriteLine("Kod prawidłowy");
-
-                            while (true)
+                            Console.WriteLine("Użyto nowy_klucz.");
+                            Console.WriteLine("Podaj czterocyfrowy kod: ");
+                            string password = Console.ReadLine();
+                            if (password == Player.CheckPassword())
                             {
 
 
-                                if (staff1.Nowa_lodowka.Count != 0)
-                                {
-                                    Console.WriteLine("W Nowa_lodowka znajdują się: ");
-                                    foreach (string name in staff1.Nowa_lodowka)
-                                    {
-                                        Console.WriteLine($"{staff1.Nowa_lodowka.IndexOf(name) + 1} {name} ");
-                                    }
-                                    Console.WriteLine("Podaj numer rzeczy którą chcesz umieścić w ekwipunku");
-                                    if (int.TryParse(Console.ReadLine(), out int item))
-                                    {
-                                        Player.Record(staff1.Nowa_lodowka[item - 1]);
-                                        staff1.Nowa_lodowka.RemoveAt(item - 1);
-                                    }
+                                Console.WriteLine("Kod prawidłowy");
 
-                                }
-                                else
+                                while (true)
                                 {
-                                    Console.WriteLine("Nowa_lodowka jest pusta!");
-                                }
-                                Console.WriteLine("Jesteś przy Nowa_lodowka, jeśli chcesz wrócić wciśnij 'q', jeśli nie wciśnij enter");
-                                string exit = Console.ReadLine();
-                                if (exit == "q")
-                                {
-                                    return;
+
+
+                                    if (staff1.Nowa_lodowka.Count != 0)
+                                    {
+                                        Console.WriteLine("W Nowa_lodowka znajdują się: ");
+                                        foreach (string name in staff1.Nowa_lodowka)
+                                        {
+                                            Console.WriteLine($"{staff1.Nowa_lodowka.IndexOf(name) + 1} {name} ");
+                                        }
+                                        Console.WriteLine("Podaj numer rzeczy którą chcesz umieścić w ekwipunku");
+                                        if (int.TryParse(Console.ReadLine(), out int item))
+                                        {
+                                            Player.Record(staff1.Nowa_lodowka[item - 1]);
+                                            staff1.Nowa_lodowka.RemoveAt(item - 1);
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Nowa_lodowka jest pusta!");
+                                    }
+                                    Console.WriteLine("Jesteś przy Nowa_lodowka, jeśli chcesz wrócić wciśnij 'q', jeśli nie wciśnij enter");
+                                    string exit = Console.ReadLine();
+                                    if (exit == "q")
+                                    {
+                                        return;
+                                    }
                                 }
                             }
-                        }break;
+                            else
+                            {
+                                Console.WriteLine("Kod nieprawidłowy");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Potrzebujesz nowy_klucz!!!");
+                        }
+                        break;
                     case "3":
                     case "Podejdz Donica":
                         while (true)
@@ -149,12 +162,12 @@ namespace EscapeRoom
                         while (true)
                         {
 
-                            if (Player.Check("Klucz"))
+                            if (Player.CheckItemIsInInventory("klucz"))
                             {
                                 Console.WriteLine("Jesteś przy drzwiach i masz 'Klucz', czy chcesz go użyć?");
                                 Console.WriteLine("1. TAK\n2. NIE");
-                                string decision = Console.ReadLine();
-                                decision = decision.ToUpper();
+                                string decision = Console.ReadLine().ToUpper();
+                                //decision = decision.ToUpper();
                                 switch (decision)
                                 {
                                     case "1":

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,15 +36,15 @@ namespace EscapeRoom
         {
             inventory.Add(value);
         }
-        public static void Remove(string value)
+        public static void RemoveItem(string value)
         {
-            inventory.Remove(value);
+            inventory.Remove(value);            
         }
-        public static bool Check(string value)
+        public static bool CheckItemIsInInventory(string value)
         {
             return inventory.Contains(value);
         }
-        public static bool ContainItem()
+        public static bool ContainAnyItem()
         {
             if (inventory.Count > 0)
             {
@@ -57,7 +58,7 @@ namespace EscapeRoom
             if (inventory.Count > 0)
             {
                 
-                foreach (var value in inventory)
+                foreach (string value in inventory)
                 {
                     Console.WriteLine(value);
                     
@@ -71,35 +72,44 @@ namespace EscapeRoom
         public static void UseItem(string item)
         
         {
-            if (ContainItem())
+            if (CheckItemIsInInventory(item))
             {
                 switch (item)
                 {
-                    case "notes":                        
-                        Console.WriteLine($"Kod do Nowa_lodowka\n" +
-                            $"{password}");                        
+                    case "notes":
+                        Console.WriteLine($"Kod do nowa_lodowka\n" +
+                            $"{password}");
                         break;
                     case "stary_klucz":
                         Console.WriteLine("Klucz do starej komody");
                         break;
                     case "zapalki":
                         Console.WriteLine("Rodzice mówili nie baw się zapałkami w domu...\n" +
-                            "*YOU DIE*");                            
-                            break;
+                            "*YOU DIE*");
+                        break;
                     case "stara_moneta":
                         Console.WriteLine("Podrzucasz monetę... przepada pomiędzy starymi deskami");
-                        Remove(item);
-                            break;
+                        RemoveItem("stara_moneta");
+                        break;
                     case "klucz":
-                        Console.WriteLine("Klucz");
+                        Console.WriteLine("klucz");
                         break;
                     case "ziemia":
                         Console.WriteLine("Pobrudziłeś sobie ręce");
-                            break;
+                        RemoveItem("ziemia");
+                        Console.WriteLine("Stracono ziemia");
+                        break;
                     case "nowy_klucz":
-                        Console.WriteLine("Nowy klucz");
-                            break;
+                        Console.WriteLine("nowy klucz");
+                        break;
+
+
                 }
+
+            }
+            else
+            {
+                Console.WriteLine("Podałeś złą nazwę lub nie masz takiego przedmiotu, sprawdź ekwipunek!!!");
             }
         }
 

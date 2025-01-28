@@ -11,22 +11,22 @@ namespace EscapeRoom
         
         public List<string> Stara_komoda = new List<string>()
         {
-            "Stary_klucz",
-            "Notes",
-            "Zapalki",
-            "Stara_moneta",
+            "stary_klucz",
+            "notes",
+            "zapalki",
+            "stara_moneta",
 
         };
 
         public List<string> Nowa_lodowka = new List<string>()
         {
-            "Klucz"
+            "klucz"
         };
 
         public List<string> Donica = new List<string>()
         {
-            "Ziemia",
-            "Nowy_klucz",
+            "ziemia",
+            "nowy_klucz",
 
         };
 

@@ -53,26 +53,27 @@ internal class Program
                             break;
                         case "4":
                         case "ekwipunek":
+                            Console.WriteLine("W ekwipunku znajdują się:\n");
                             Player.Display();
                             break;
                         case "5":
                         case "uzyj przedmiot":
                             {
-                                if (Player.ContainItem())
+                                if (Player.ContainAnyItem())
                                 {
                                     Console.WriteLine("Który przedmiot z twojego ekwipunku chcesz użyć:\n");
                                     Player.Display();
                                     string item = Console.ReadLine();
-                                    item.ToLower();
-                                    Player.UseItem(item);
-                                    if(item == "zapalki")
+                                    //item.ToLower();
+                                    Player.UseItem(item.ToLower());
+                                    if (item == "zapalki")
                                     {
                                         room.endGame = true;
                                     }
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Ekwipunek jest pusty");
+                                    Console.WriteLine("Ekwipunek jest pusty!!!");
                                 }
 
                             }
@@ -80,7 +81,7 @@ internal class Program
                         case "q":
                             return;
                         default:
-                            Console.WriteLine("Podano zły symbol");
+                            Console.WriteLine("Podano zły symbol!!!");
                             break;
                     }
                 }  
